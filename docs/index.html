@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CVJ522: Global Warming</title>
+
+    <!-- Styling -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Oswald" />
+
+    <!-- Google Choropleth -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <!-- D3 -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- Scripting -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body role="document">
+
+<!--Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+<!--            <a class="navbar-brand" href="#">Infographics and Data Visualization</a>-->
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="content" role="main">
+<div class="col-md-12">
+
+    <div class="jumbotron" id="title">
+        <h1>Tides of Fate</h1>
+        <p class="lead">A visual guide to global warming</p>
+        <small>Nicolas Aguirre &bull; Shiying Dai &bull; Sizheng Su &bull; Brandon Wilson</small>
+    </div>
+
+    <!-- Threatened Areas -->
+    <div class="hidden">
+        <div class="page-header">
+            <h2>Who is most vulnerable?</h2>
+        </div>
+
+        <p>
+            Global warming poses a threat to the entire planet, but some regions will suffer more imminently than others.
+            Projections have been made for cities most threatened by future sea level rise.
+        </p>
+
+        <p>
+            <strong>
+                The map below shows which cities are threatened by sea level rise in 2050 and 2070 (measured by assets and population). Red circles indicate cities the 20 most vulnerable cities. Use the slider to select a scenario.
+            </strong>
+        </p>
+
+        <!-- TABLEAU Cities -->
+        <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 100%'><noscript><a href='#'><img alt='2050 &amp; 2070 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;97&#47;97K5T4PGJ&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='738' height='650' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='path' value='shared&#47;97K5T4PGJ' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;97&#47;97K5T4PGJ&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
+
+        <hr>
+    </div>
+
+    <h3>What Are the Consequences?</h3>
+
+    <p>
+        Two main metrics are used to evaluate damage done by sea level rise: assets and population. The graphs below show which
+        cities stand to lose the most in terms of population and assets.
+    </p>
+
+    <p>
+        <a href="#" data-toggle="tooltip" data-placement="top" title="Average Annual Losses">AAL</a> is one of the
+        key indicators of economic risk that a country faces from sea level rise. Cities are ranked by both absolute AAL and
+        relative AAL (percentage of GDP).
+    </p>
+
+    <!-- NESTED TABS -->
+    <div class="tabbable boxed parentTabs">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#2005">2005</a>
+            </li>
+            <li><a href="#2050">2050</a>
+            </li>
+            <li><a href="#2070">2070</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="2005">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#sub11">2005 - Absolute AAL</a>
+                        </li>
+                        <li><a href="#sub12">2005 - Relative AAL</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="sub11">
+                            <p class="chart-title">AAL with Protection ($millions)</p>
+                            <img src="img/aal/2005-abs-aal.png">
+                        </div>
+                        <div class="tab-pane fade" id="sub12">
+                            <p class="chart-title">AAL with Protection (% of City GDP)</p>
+                            <img src="img/aal/2005-rel-aal.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="2050">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#sub21">2050 AAL</a>
+                        </li>
+                        <li><a href="#sub22">Comparing 2050 with 2005</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="sub21">
+                            <p class="chart-title">AAL</p>
+                            <img src="img/aal/2050.png">
+                        </div>
+                        <div class="tab-pane fade" id="sub22">
+                            <p class="chart-title">Increase in AAL Compared to 2005</p>
+                            <img src="img/aal/2050comparison.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="2070">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#sub31">2070 - Assets</a>
+                        </li>
+                        <li><a href="#sub32">2070 - Population</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="sub31">
+                            <p class="chart-title">Exposed Assets</p>
+                            <img src="img/aal/2070assets.png">
+                        </div>
+                        <div class="tab-pane fade" id="sub32">
+                            <p class="chart-title">Exposed Population</p>
+                            <img src="img/aal/2070population.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h2>What we know so far</h2>
+    </div>
+
+    <h3>Sea Level and Global Temperature</h3>
+    <p>
+        This graph plots two variables over time: change in global surface temperature with respect to the 1951-1980 average, and change in global mean sea level. A steady increase in sea level and global average temperature is apparent.
+    </p>
+
+    <!-- TABLEAU Sea Level Rise -->
+    <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 100%;'><noscript><a href='#'><img alt='Sheet 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;temperatureandsealevel&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='738' height='600' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='temperatureandsealevel&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;te&#47;temperatureandsealevel&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
+
+    <div class="page-header">
+        <h2>How did this happen?</h2>
+    </div>
+
+    <h3>Radiative Forcing</h3>
+    <p>
+        Radiative Forcing (RF) is the measure of change in atmospheric energy due to greenhouse gas emissions.
+        Positive RF leads to surface warming, while negative RF leads to surface cooling.
+        The increase in carbon dioxide concentration since 1750 is the largest contributor to total RF.
+        The growth in CO<sub>2</sub> concentration is due primarily to fossil fuel consumption and a change in land use.
+    </p>
+
+    <p>
+        Most of the developed world uses fossil fuel for energy; some moreso than others. The map below shows carbon dioxide
+        emissions in absolute terms and per capita.
+    </p>
+
+    <!-- Google Choropleth -->
+    <div role="tabpanel">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#co2" aria-controls="co2" role="tab" data-toggle="tab"><h4>CO<sub>2</sub> Emissions by Country (thousands of tonnes)</h4></a></li>
+            <li role="presentation"><a href="#co2pc" aria-controls="co2pc" role="tab" data-toggle="tab"><h4>CO<sub>2</sub> Emissions Per Capita</h4></a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <script src="js/co2.js"></script>
+            <div role="tabpanel" class="tab-pane active fade in" id="co2">
+                <div id="chart-co2"></div>
+                <hr>
+                <h4>Top Five Offenders</h4>
+                <table class="table table-condensed table-co2">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Country</th>
+                        <th>CO<sub>2</sub> Emissions - Thousands of Tonnes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>China</td>
+                        <td>2,625,730</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>US</td>
+                        <td> 1,396,791 </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>India</td>
+                        <td> 611,226 </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Russia</td>
+                        <td> 491,840 </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Japan</td>
+                        <td> 342,270 </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane fade in" id="co2pc">
+                <div id="chart-co2pc"></div>
+                <hr>
+                <h4>Top Five Offenders</h4>
+                <table class="table table-condensed table-co2">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Country</th>
+                        <th>CO<sub>2</sub> Emissions - Tonnes per Capita</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Qatar</td>
+                        <td> 12.03 </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trinidad & Tobago</td>
+                        <td>  9.60  </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Kuwait</td>
+                        <td>  8.11  </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>United Arab Emirates</td>
+                        <td> 5.08 </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Saudi Arabia</td>
+                        <td>  4.87  </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Scatter Plot-->
+    <h3>Two Views of CO<sub>2</sub> Emissions</h3>
+    <p>
+        In absolute terms, China is world the leader in CO<sub>2</sub> emissions. However, several much smaller countries produce
+        greater emissions per capita.
+    </p>
+
+    <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 100%'><noscript><a href='#'><img alt='工作表 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;To&#47;Top10countriesin2013-fix&#47;1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='738' height='700' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='Top10countriesin2013-fix&#47;1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;To&#47;Top10countriesin2013-fix&#47;1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
+
+    <div class="page-header">
+        <h2>The Greenhouse Effect</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <img src="img/greenhouse-effect1.gif">
+        </div>
+        <div class="col-md-5">
+            <p>
+                The greenhouse effect is one of the primary mechanisms facilitating global climate change. It is a process in which
+                thermal radiation from the earth's surface is absorbed and re-emitted by atmospheric greenhouse gases such as carbon
+                dioxide and methane. This leads to an elevation in average global surface temperature.
+            </p>
+
+            <p>
+                Increasing emissions of greenhouse gases (fossil fuels, carbon dioxide) due to human activity has led to a build up in the atmosphere that absorbs and emits infrared thermal radiation which is then redirected back at the planet.
+            </p>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col-md-7">
+            <img src="img/greenhouse-effect2.gif">
+        </div>
+        <div class="col-md-5">
+            <p>
+                Solar radiation is emitted from the sun and bathes the earth's surface causing the planet to
+                gain more heat and as a consequence more infrared radiation is emitted.  Some of the solar
+                radiation is reflected by the atmosphere and earth's surface. The infrared radiation passes
+                through the atmosphere and is lost in space. While some of the infrared is absorbed and re-
+                emitted by green house gas  molecules causing the earths surface to be heated.
+            </p>
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col-md-7">
+            <img src="img/greenhouse-effect3.gif">
+        </div>
+        <div class="col-md-5">
+            <p>
+                Solar radiation passes through the clear atmosphere and is absorbed by the earths surface
+                warming it and is converted into heat causing emissions of long wave infrared radiation.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>Where do Greenhouse Gases Originate?</h3>
+
+    <p>Greenhouse gases can arise from two sources, which are direct emmisons and fossil fuel related emissions.  Land use change (e.g. cutting down trees) and agricultural (e.g. cows and other livestock)
+        can release large amount of green house gases directly. Burning fossil fuels (coal, natural gas and oil) in industry, residential or ommercial buildings,  transport and energy supply also contribute to
+        the great green house gases emissions.</p>
+
+    <p>
+        The graphic below depicts the distribution of greenhouse gas emissions by source, sector, and type of gas.
+        This may provide insight as to the role businesses and commerce play in climate change.
+    </p>
+
+    <img src="img/sector-bars.png">
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <img src="img/sector-icons-01.png">
+            <h5>Industry</h5><p>Coal combustion is a cornerstone of industrial activity. Industry contributes the most to CO<sub>2</sub> emissions.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="img/sector-icons-02.png">
+            <h5>Land Use Change</h5>
+            <p>Cutting down trees for logging or agriculture releases CO<sub>2</sub> stored in the biomass.</p>
+        </div>
+        <div class="col-md-4">
+            <img src="img/sector-icons-03.png">
+            <h5>Transport</h5>
+            <p>
+                Transportation consumes oil steadily, accounting for a large part of CO<sub>2</sub> emissions.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="img/sector-icons-04.png">
+            <h5>Agricultural</h5>
+            <p>
+                Cows and other livestock excrete substantial quantities of
+                methane (CH<sub>4</sub>) through natural digestive processes.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <img src="img/sector-icons-05.png">
+            <h5>Waste</h5>
+            <p>
+                Landfills are teeming with organic matter, emitting methane.
+            </p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <hr class="hidden">
+
+    <!-- Greenhouse Gases on a Molecular Level-->
+    <div class="hidden">
+        <h3>Greenhouse Gases on a Molecular Level</h3>
+
+        <p>An alarming trend can be seen when examining the global atmospheric concentration of certain greenhouse gases. CO<sub>2</sub>, methane and nitrous oxide have grown steadily
+            in their atmospheric concentration as a result of fossil-fuel use. </p>
+
+        <p>These gases are measured in PPM (parts per million) or PPB (parts per billion),
+            which denotes the ratio of gas molecules to other atmospheric molecules. Other things equal, an increase in concentration of these greenhouse gases
+            results in sea level rise, global average temperature rise, and glacial melting.</p>
+
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a href="#ghg-co2" aria-controls="ghg-co2" role="tab" data-toggle="tab">
+                    <h4>Change in CO<sub>2</sub></h4></a>
+                </li>
+                <li role="presentation" class="active"><a href="#ghg-ch4" aria-controls="ghg-ch4" role="tab" data-toggle="tab">
+                    <h4>Change in CH4 (Methane)</h4></a>
+                </li>
+                <li role="presentation"><a href="#ghg-nos" aria-controls="ghg-nos" role="tab" data-toggle="tab">
+                    <h4>Change in Nitrous Oxide</h4></a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <script src="js/ghg.js"></script>
+
+                <div role="tabpanel" class="tab-pane fade fade-in" id="ghg-co2">
+                    <div id="chart-ghg-co2" class="d3-chart"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane active fade fade-in" id="ghg-ch4">
+                    <div id="chart-ghg-ch4" class="d3-chart"></div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade fade-in" id="ghg-nos">
+                    <div id="chart-ghg-nos" class="d3-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-header">
+        <h2>Ice-Albedo Feedback</h2>
+    </div>
+
+    <p>
+        The ice-albedo feedback effect is another component of global warming. Familiarization with this mechanism is important
+        in understanding the magnitude of climate change.
+    </p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <img src="img/ice1.png">
+        </div>
+        <div class="col-md-4">
+            <p>
+                Albedo simply means reflection and the ice albedo refers to the reflectivity of the ice.
+                Essentially, ice reflects solar radiation back into space. The more ice and white snow covering an area, the more light is reflected. Water in the ocean on the other hand, reflects less and absorbs more solar radiation due to a lower albedo Due to climate changes such as the “Greenhouse Effect”.
+            </p>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-md-8">
+            <img src="img/ice2.png">
+        </div>
+        <div class="col-md-4">
+            <p>
+                Water absorbs radiation from the sun, increasing temperature and quickening the melting of glaciers. As glacial ice dissipates, melting occurs more rapidly.
+            </p>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-md-8">
+            <img src="img/ice3.png">
+        </div>
+        <div class="col-md-4">
+            <p>
+                Due to the Greenhouse Effect the ice caps on the poles are melting faster than ever before causing the solar radiation to be absorbed in the newly exposed areas in the ocean. The warming seabed is causing the permafrost to melt and crack open releasing methane and carbon gases which consequently means more heat lowering the albedo range of the ice due to melting.
+            </p>
+        </div>
+    </div><br>
+
+    <hr>
+
+    <h3>Global Glacier Changes</h3>
+    <div>
+        <p>
+            This bar graph represents the fluctuations of the Arctic ice between the years of 1979 and 2010.
+            Looking at the graph one may infer the devastating drop of ice in comparison to the increase of ice build up.
+            The ice levels are steadily falling.
+        </p>
+    <img src="img/arctic-anomalies.png">
+    </div>
+
+    <hr>
+
+    <h3>Changes in Glacier Length (in KM)</h3>
+    <div>
+        <p>
+            General warming during the transition from the Late Glacial period (between the Late Glacial Maximum and about 10,000
+            years ago) to the early Holocene (about 10,000 to 6,000 years ago) led to a drastic general ice retreat with intermittent
+            periods of re-advances. The overall retreat of the glacier termini is commonly measured in kilometres for larger glaciers,
+            and hundreds of metres for smaller glaciers.
+        </p><br>
+        <img src="img/glacier-length.png">
+    </div>
+
+
+
+
+    <hr>
+    <h4>Sources:</h4>
+    <ul>
+        <li><a href="http://www.cmar.csiro.au/sealevel/sl_data_cmar.html">Commonwealth Scientific and Industrial Research Organisation</a></li>
+        <li><a href="http://climate.nasa.gov/vital-signs/global-temperature/">NASA</a></li>
+        <li><a href="https://nsidc.org/data/search/#keywords=brightness+temperature/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25">National Snow & Ice Data Center</a></li>
+        <li><a href="http://www.epa.gov/climatechange/science/causes.html">EPA</a></li>
+        <li><a href="https://www.ipcc.ch/report/ar5/">Intergovernmental Panel on Climate Change</a></li>
+    </ul>
+
+    <hr>
+    <h4>Research and Graphics by:</h4>
+    <ul>
+        <li>Nicolas Aguirre</li>
+        <li>Shiying Dai</li>
+        <li>Sizheng Su</li>
+        <li>Brandon Wilson</li>
+    </ul>
+
+</div><!-- /col-md-12-->
+</div><!-- /.container-->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+//    Initialize tooltips
+//    $(function () {
+//        $('[data-toggle="tooltip"]').tooltip()
+//    })
+
+   // Check if DOM is ready for D3
+    $( document ).ready(function(){
+        ghgco2(); ghgch4(); ghgnos();
+        activaTab('ghg-co2')
+    })
+
+    function activaTab(tab){
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show')
+    };
+
+    // For nested tabs
+    $("ul.nav-tabs a").click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+</script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
